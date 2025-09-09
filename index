@@ -1,0 +1,240 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>stroke6 — Resources</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Merriweather:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #b31212;          /* primary red accent */
+      --accent-dark: #900;        /* darker red for headings */
+      --accent-light: #ffeaea;    /* light red hover bg */
+      --text-body: #2a2a2a;       /* default text color */
+      --radius: 8px;              /* consistent border‑radius */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-body);
+      background: #f3f3f3;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 860px;
+      margin-inline: auto;
+      background: #fff;
+      padding: clamp(1rem, 4vw, 2.5rem);
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,.045);
+    }
+
+    /* ---------- Header ---------- */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-block-end: 1.5rem;
+    }
+
+    .header img {
+      width: 96px;
+      height: 96px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 0;
+    }
+
+    .intro { margin: 0.25rem 0 0; }
+
+    /* ---------- Sections ---------- */
+    .section { margin-block-start: 2.25rem; }
+
+    .section h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin: 0 0 .5rem 0;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: .25rem;
+    }
+
+    /* ---------- Link List ---------- */
+    .link-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .link-card {
+      margin-block: 1rem;
+      position: relative; /* Added for positioning context */
+    }
+
+    .link-card a {
+      display: block;
+      padding: 1rem 1.25rem;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-left: 6px solid var(--accent);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--accent-dark);
+      font-weight: 600;
+      transition: transform .18s ease, border-left-width .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .link-card a:hover,
+    .link-card a:focus {
+      transform: translateX(4px);
+      border-left-width: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+      background: var(--accent-light);
+    }
+
+    .link-desc {
+      margin: .25rem 0 0 1rem;
+      padding-left: 1rem;
+      border-left: 2px dashed #ccc;
+      color: #555;
+      font-size: .95rem;
+    }
+
+    .link-desc code {
+      background: #e8e8e8;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9em;
+    }
+
+    /* ---------- Accent Variants ---------- */
+    [data-accent="blue"] > a {
+      border-left-color: #4c75a3;
+      color: #4c75a3;
+    }
+    [data-accent="blue"] > a:hover,
+    [data-accent="blue"] > a:focus {
+      background: #e8f0ff;
+    }
+
+    [data-accent="gold"] > a {
+      border-left-color: #e6bc00;
+      color: #8b6b00;
+    }
+    [data-accent="gold"] > a:hover,
+    [data-accent="gold"] > a:focus {
+      background: #fff8d6;
+    }
+
+    /* ---------- Hover Trigger Styles ---------- */
+    .hover-trigger {
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.2s ease;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+    }
+
+    .hover-trigger:hover {
+      background-color: rgba(76, 117, 163, 0.1);
+    }
+
+    /* ---------- Image Preview Styles ---------- */
+    .image-preview {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1000;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      padding: 8px;
+      border: 1px solid #ddd;
+      opacity: 0;
+      transform: scale(0.9) translateY(-10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      max-width: 400px;
+    }
+
+    .image-preview.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .loading-placeholder {
+      width: 300px;
+      height: 200px;
+      background: #f8f8f8;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 14px;
+      border: 1px dashed #ccc;
+    }
+
+    /* ---------- Dark‑mode (prefers‑color‑scheme) ---------- */
+    @media (prefers-color-scheme: dark) {
+      body { background: #222; color: #ddd; }
+      .container { background: #2b2b2b; border-color: #3a3a3a; }
+      h1, .section h2 { color: #ff5454; }
+      .link-card a { background: #333; border-color: #444; border-left-color: var(--accent); }
+      .link-card a:hover { background: #3a0000; }
+      .link-desc { color: #aaa; border-left-color: #666; }
+      .link-desc code { background: #444; color: #ddd; }
+      
+      /* Dark mode for hover trigger and image preview */
+      .hover-trigger:hover {
+        background-color: rgba(76, 117, 163, 0.2);
+      }
+      
+      .image-preview { 
+        background: #2b2b2b; 
+        border-color: #444; 
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      }
+      .loading-placeholder { 
+        background: #333; 
+        border-color: #555; 
+        color: #aaa; 
+      }
+    }
+  </style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1245.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+  <main class="container">
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <img src="https://archiveofourown.org/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOTdKSlE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--01c86b15f6e03859b871688f7cd7abc300decd81/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVdscGFUb0xiRzloWkdWeWV3WTZCbTVwK2c9PSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--dbfda9f6349f05dbf7e1dce388e216b2ffb49003/original.jpg" alt="Profile icon">
+      <div>
+        <h1>Resources</h1>
+        <p class="intro">Hi, stroke here. Stuff that <em>should</em> work fine on mobile.</p>
+      </div>
+    </header>
+
+   
+</body></html>
